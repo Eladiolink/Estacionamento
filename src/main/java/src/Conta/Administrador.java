@@ -37,28 +37,32 @@ public class Administrador extends Conta {
     }
 
     public void AdministradorAction() {
+       
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         System.out.println("\n================= ADMINISTRADOR =================");
         System.out.println("1 - Opcoes de Piso");
         System.out.println("2 - Opcoes de Administrador");
         System.out.println("3 - Opcoes de Atendente");
         System.out.println("4 - Encerrar Sessao");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
+        String opcao = Leitor.next();
 
         switch (opcao) {
-            case 1:
+            case "1":
                 gerenciamentoPiso.Piso();
                 AdministradorAction();
                 break;
-            case 2:
+            case "2":
                 gerenciamentoAdministrador.Admnistrador();
                 AdministradorAction();
                 break;
-            case 3:
+            case "3":
                 gerenciamentoAtendente.Atendente();
                 AdministradorAction();
                 break;
-            case 4:
+            case "4":
                 System.out.println("Encerrando sessão...");
                 break;
             default:

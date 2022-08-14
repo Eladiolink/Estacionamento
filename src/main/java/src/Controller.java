@@ -28,41 +28,34 @@ public class Controller {
     }
 
     public void init() {
-        System.out.println("\n\n================= MENU =================");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
+        System.out.println("================= MENU =================");
         System.out.println("Como deseja entrar?");
         System.out.println("1 - Admnistrador");
-        System.out.println("2 - Atendente");
-        System.out.println("3 - Cliente");
-        System.out.println("4 - Encerrar Programa");
+        System.out.println("2 - Cliente");
+        System.out.println("3 - Encerrar Programa");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
+        String opcao = Leitor.next();
 
         switch (opcao) {
-            case 1:
+            case "1":
                 ChamarAdmnistrador();
                 init();
                 break;
-            case 2:
-                ChamarAtendente();
-                init();
-                break;
-            case 3:
+            case "2":
                 ChamarCliente();
                 init();
                 break;
-            case 4:
+            case "3":
                 System.out.println("Fechando Programa...");
                 break;
             default:
-                System.out.println("Opção escolhina não é válida");
-            init();
+                System.out.println("\n\nOpção escolhina não é válida");
+                try { Thread.sleep (5000); } catch (InterruptedException ex) {}
+                init();
         }
-    }
-    
-    private void ChamarAtendente(){
-        System.out.println("Atendente");
-       // Atendente = new Atendente();
-        System.out.println("");
     }
 
     private void ChamarAdmnistrador(){

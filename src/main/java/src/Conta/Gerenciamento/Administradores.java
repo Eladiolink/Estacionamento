@@ -1,5 +1,6 @@
 package src.Conta.Gerenciamento;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,22 +32,22 @@ public class Administradores implements InterfaceGerenciamento {
         System.out.println("4 - Sair");
         System.out.print("Digite sua opcao: ");
 
-        int opcao = Leitor.nextInt();
+        String opcao = Leitor.next();
 
         switch (opcao) {
-            case 1:
+            case "1":
                 Adicionar();
                 Admnistrador();
                 break;
-            case 2:
+            case "2":
                 Modificar();
                 Admnistrador();
                 break;
-            case 3:
+            case "3":
                 Remover();
                 Admnistrador();
                 break;
-            case 4:
+            case "4":
                 break;
             default:
                 System.out.println("Opção escolhina não é válida");
@@ -75,29 +76,35 @@ public class Administradores implements InterfaceGerenciamento {
         for (int i = 0; i < Admnistradores.size(); i++) {
             System.out.println(i + " - " + Admnistradores.get(i).getUser());
         }
-        System.out.print("Opcao: ");
-        int opcao = Leitor.nextInt();
 
-        if (opcao >= Admnistradores.size()) {
-            System.out.println("Usuario Inválido!");
-        } else {
-            Administrador adm = Admnistradores.get(opcao);
-
-            System.out.println("Modificar: \n 1 - Usuario \n 2 - Senha?");
+        try{
             System.out.print("Opcao: ");
-            opcao = Leitor.nextInt();
-            if (opcao == 1) {
-                System.out.print("Novo Usuario: ");
-                String user = Leitor.next();
-                adm.setUser(user);
-            }
+            int opcao = Leitor.nextInt();
 
-            if (opcao == 2) {
-                System.out.print("Nova Senha: ");
-                String pass = Leitor.next();
-                adm.setPass(pass);
+            if (opcao >= Admnistradores.size()) {
+                System.out.println("Usuario Inválido!");
+            } else {
+                Administrador adm = Admnistradores.get(opcao);
+
+                System.out.println("Modificar: \n 1 - Usuario \n 2 - Senha?");
+                System.out.print("Opcao: ");
+                opcao = Leitor.nextInt();
+                if (opcao == 1) {
+                    System.out.print("Novo Usuario: ");
+                    String user = Leitor.next();
+                    adm.setUser(user);
+                }
+
+                if (opcao == 2) {
+                    System.out.print("Nova Senha: ");
+                    String pass = Leitor.next();
+                    adm.setPass(pass);
+                }
             }
+        } catch (Exception e){
+            System.out.println("Valor passado nao e um inteiro");
         }
+
     }
 
     public void Remover() {
@@ -110,13 +117,18 @@ public class Administradores implements InterfaceGerenciamento {
         for (int i = 0; i < Admnistradores.size(); i++) {
             System.out.println(i + " - " + Admnistradores.get(i).getUser());
         }
-        System.out.print("Opcao: ");
-        int opcao = Leitor.nextInt();
 
-        if (opcao >= Admnistradores.size()) {
-            System.out.println("Usuario Inválido!");
-        } else {
-            Admnistradores.remove(opcao);
+        try{
+            System.out.print("Opcao: ");
+            int opcao = Leitor.nextInt();
+
+            if (opcao >= Admnistradores.size()) {
+                System.out.println("Usuario Invalido!");
+            } else {
+                Admnistradores.remove(opcao);
+            }
+        }catch (Exception e) {
+            System.out.println("Opcao passada nao e um numero!");
         }
     }
 }

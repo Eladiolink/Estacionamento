@@ -23,22 +23,22 @@ public class Pisos implements InterfaceGerenciamento {
         System.out.println("4 - Sair");
         System.out.print("Digite sua opcao: ");
 
-        int opcao = Leitor.nextInt();
+        String opcao = Leitor.next();
 
         switch (opcao) {
-            case 1:
+            case "1":
                 Adicionar();
                 Piso();
                 break;
-            case 2:
+            case "2":
                 Modificar();
                 Piso();
                 break;
-            case 3:
+            case "3":
                 Remover();
                 Piso();
                 break;
-            case 4:
+            case "4":
                 break;
             default:
                 System.out.println("Opção escolhina não é válida");
@@ -65,13 +65,17 @@ public class Pisos implements InterfaceGerenciamento {
 
         MostrarPisos();
 
-        System.out.print("Qual piso voce deseja alterar? ");
-        int andar = Leitor.nextInt();
-       
-        if( andar>=0 && andar <= Piso.qtPisos){
-            Piso piso = Pisos.get(andar); 
-            ModificarPiso modificarPiso = new ModificarPiso(piso);
-            modificarPiso.modificarInit(andar);
+        try{
+            System.out.print("Qual piso voce deseja alterar? ");
+            int andar = Leitor.nextInt();
+
+            if( andar>=0 && andar <= Piso.qtPisos){
+                Piso piso = Pisos.get(andar);
+                ModificarPiso modificarPiso = new ModificarPiso(piso);
+                modificarPiso.modificarInit(andar);
+            }
+        }catch (Exception e){
+            System.out.println("Opcao passada nao e um numero");
         }
     }
     
@@ -85,13 +89,18 @@ public class Pisos implements InterfaceGerenciamento {
         for (int i = 0; i < Pisos.size(); i++) {
             System.out.println(i + " - Piso");
         }
-        System.out.print("Opcao: ");
-        int opcao = Leitor.nextInt();
 
-        if (opcao >= Pisos.size()) {
-            System.out.println("Piso Inválido!");
-        } else {
-            Pisos.remove(opcao);
+        try{
+            System.out.print("Opcao: ");
+            int opcao = Leitor.nextInt();
+
+            if (opcao >= Pisos.size()) {
+                System.out.println("Piso Inválido!");
+            } else {
+                Pisos.remove(opcao);
+            }
+        }catch (Exception e){
+            System.out.println("Opcao passada nao e um numero");
         }
     }
 

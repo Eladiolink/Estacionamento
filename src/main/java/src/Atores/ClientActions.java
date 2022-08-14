@@ -30,23 +30,27 @@ public class ClientActions {
     }
 
     public void clientInit() {
-        System.out.println("\n\n================= CLIENTE =================");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
+        System.out.println("================= CLIENTE =================");
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Estacionar");
         System.out.println("2 - Sair");
         System.out.println("3 - Mostrar Vagas Livres em um Piso");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
+        String opcao = Leitor.next();
 
         switch (opcao) {
-            case 1:
+            case "1":
                 estacionar();
                 break;
-            case 2:
+            case "2":
                 sair();
                 break;
-            case 3:
+            case "3":
                 MostrarVagasLivres();
+                try { Thread.sleep (5000); } catch (InterruptedException ex) {}
                 break;
             default:
                 System.out.println("Opção escolhina não é válida");
@@ -98,26 +102,26 @@ public class ClientActions {
         Veiculo veiculo = null;
         while (condition) {
             System.out.print("Digite sua opcao: ");
-            int opcao = Leitor.nextInt();
+            String opcao = Leitor.next();
 
             switch (opcao) {
-                case 1:
+                case "1":
                     veiculo = new Caminhao(placa);
                     condition = false;
                     break;
-                case 2:
+                case "2":
                     veiculo = new Van(placa);
                     condition = false;
                     break;
-                case 3:
+                case "3":
                     veiculo = new Carro(placa);
                     condition = false;
                     break;
-                case 4:
+                case "4":
                     veiculo = new CarroEletrico(placa);
                     condition = false;
                     break;
-                case 5:
+                case "5":
                     veiculo = new Motocicleta(placa);
                     condition = false;
                     break;
@@ -185,16 +189,21 @@ public class ClientActions {
         for (int i = 0; i < this.Pisos.size(); i++) {
             System.out.println(i + " Piso");
         }
-        System.out.print("Informe qual piso deseja ver as vagas livres: ");
-        int opcao = Leitor.nextInt();
 
-        if (opcao >= this.Pisos.size()) {
-            System.out.println("Piso inválido!");
-            return;
+        try { 
+            System.out.print("Informe qual piso deseja ver as vagas livres: ");
+            int opcao = Leitor.nextInt(); 
+            if (opcao >= this.Pisos.size()) {
+                System.out.println("Piso inválido!");
+                return;
+            }
+    
+            Piso piso = this.Pisos.get(opcao);
+            piso.MostrarVagas();
+        } catch (Exception e) { 
+            System.out.println("\nValor informado nao e um numero!");
         }
-
-        Piso piso = this.Pisos.get(opcao);
-        piso.MostrarVagas();
+       
     }
 
 }

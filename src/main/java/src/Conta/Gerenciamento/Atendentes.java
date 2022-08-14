@@ -68,28 +68,33 @@ public class Atendentes implements InterfaceGerenciamento{
         for (int i = 0; i < Atendentes.size(); i++) {
             System.out.println(i + " - " + Atendentes.get(i).getUser());
         }
-        System.out.print("Opcao: ");
-        int opcao = Leitor.nextInt();
 
-        if (opcao >= Atendentes.size()) {
-            System.out.println("Usuario Inválido!");
-        } else {
-            Atendente adm = Atendentes.get(opcao);
-
-            System.out.println("Modificar: \n 1 - Usuario \n 2 - Senha?");
+        try{
             System.out.print("Opcao: ");
-            opcao = Leitor.nextInt();
-            if (opcao == 1) {
-                System.out.print("Novo Usuario: ");
-                String user = Leitor.next();
-                adm.setUser(user);
-            }
+            int opcao = Leitor.nextInt();
 
-            if (opcao == 2) {
-                System.out.print("Nova Senha: ");
-                String pass = Leitor.next();
-                adm.setPass(pass);
+            if (opcao >= Atendentes.size()) {
+                System.out.println("Usuario Inválido!");
+            } else {
+                Atendente adm = Atendentes.get(opcao);
+
+                System.out.println("Modificar: \n 1 - Usuario \n 2 - Senha?");
+                System.out.print("Opcao: ");
+                opcao = Leitor.nextInt();
+                if (opcao == 1) {
+                    System.out.print("Novo Usuario: ");
+                    String user = Leitor.next();
+                    adm.setUser(user);
+                }
+
+                if (opcao == 2) {
+                    System.out.print("Nova Senha: ");
+                    String pass = Leitor.next();
+                    adm.setPass(pass);
+                }
             }
+        }catch (Exception e){
+            System.out.println("Opcao passada nao e um numero");
         }
     }
 
