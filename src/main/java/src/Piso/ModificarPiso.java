@@ -1,5 +1,9 @@
 package src.Piso;
 
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
+
+import java.sql.Time;
 import java.util.Scanner;
 
 public class ModificarPiso {
@@ -12,6 +16,8 @@ public class ModificarPiso {
     }
 
     public void modificarInit(int andar) {
+        CleanCLI.clear();
+
         System.out.println("\n\nO que deseja fazer?");
         System.out.println("1 - Modificar Quantidade de Vagas");
         System.out.println("2 - Modificar Quantidade de Entradas");
@@ -20,32 +26,41 @@ public class ModificarPiso {
         System.out.println("5 - Remover Vagas");
         System.out.println("6 - Sair");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
 
-        switch (opcao) {
-            case 1:
-                modificarQtVagas();
-                break;
-            case 2:
-                modificarQtEntrada(andar);
-                break;
-            case 3:
-                modificarQtSaida(andar);
-                break;
-            case 4:
-                adicionarVagas();
-                break;
-            case 5:
-                removerVagas();
-                break;
-            case 6:
-                break;
-            default:
-                System.out.println("Opcao escolhina nao e valida");
+        try{
+            int opcao = Leitor.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    modificarQtVagas();
+                    break;
+                case 2:
+                    modificarQtEntrada(andar);
+                    break;
+                case 3:
+                    modificarQtSaida(andar);
+                    break;
+                case 4:
+                    adicionarVagas();
+                    break;
+                case 5:
+                    removerVagas();
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Opcao escolhina nao e valida");
+                    TimerSleep.Sleep(2);
+            }
+        }catch (Exception e){
+            System.out.println("Opcao passada nao e um numero!");
         }
+
     }
 
     public void adicionarVagas() {
+        CleanCLI.clear();
+
         System.out.println("\n\nO que deseja fazer?");
         System.out.println("1 - Adicionar em Veiculos Pequenos");
         System.out.println("2 - Adicionar em Veiculos Grandes");
@@ -53,39 +68,47 @@ public class ModificarPiso {
         System.out.println("4 - Adicionar em Motocicletas");
         System.out.println("5 - Sair");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
-        int quantidade = 0;
 
-        if (opcao != 5) {
-            System.out.print("Quantidade deseja adicionar: ");
-            quantidade = Leitor.nextInt();
-        }
 
-        switch (opcao) {
-            case 1:
-                piso.vagas.adicionarVeiculosPequenos(quantidade);
-                piso.MostrarVagas();
-                adicionarVagas();
-                break;
-            case 2:
-                piso.vagas.adicionarVeiculosGrandes(quantidade);
-                piso.MostrarVagas();
-                adicionarVagas();
-                break;
-            case 3:
-                piso.vagas.adicionarVeiculosEletricos(quantidade);
-                piso.MostrarVagas();
-                adicionarVagas();
-                break;
-            case 4:
-                piso.vagas.adicionarMotocicleta(quantidade);
-                piso.MostrarVagas();
-                adicionarVagas();
-                break;
-            case 5:
-                break;
-            default:
-                System.out.println("Opção escolhina não é válida");
+        try {
+            int opcao = Leitor.nextInt();
+            int quantidade = 0;
+
+            if(opcao != 5){
+                System.out.print("Quantidade deseja adicionar: ");
+                quantidade = Leitor.nextInt();
+            }
+
+            switch (opcao) {
+                case 1:
+                    piso.vagas.adicionarVeiculosPequenos(quantidade);
+                    piso.MostrarVagas();
+                    adicionarVagas();
+                    break;
+                case 2:
+                    piso.vagas.adicionarVeiculosGrandes(quantidade);
+                    piso.MostrarVagas();
+                    adicionarVagas();
+                    break;
+                case 3:
+                    piso.vagas.adicionarVeiculosEletricos(quantidade);
+                    piso.MostrarVagas();
+                    adicionarVagas();
+                    break;
+                case 4:
+                    piso.vagas.adicionarMotocicleta(quantidade);
+                    piso.MostrarVagas();
+                    adicionarVagas();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Opcao escolhida nao e valida");
+                    TimerSleep.Sleep(2);
+            }
+        }catch (Exception e){
+            System.out.println("Quantidade informada nao e um numero");
+            TimerSleep.Sleep(2);
         }
     }
 
@@ -97,39 +120,43 @@ public class ModificarPiso {
         System.out.println("4 - Remover em Motocicletas");
         System.out.println("5 - Sair");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
-        int quantidade = 0;
 
-        if (opcao != 5) {
+        try{
+            int opcao = Leitor.nextInt();
+            int quantidade = 0;
             System.out.print("Quantidade deseja remover: ");
             quantidade = Leitor.nextInt();
-        }
 
-        switch (opcao) {
-            case 1:
-                piso.vagas.removerVeiculosPequenos(quantidade);
-                piso.MostrarVagas();
-                removerVagas();
-                break;
-            case 2:
-                piso.vagas.removerVeiculosGrandes(quantidade);
-                piso.MostrarVagas();
-                removerVagas();
-                break;
-            case 3:
-                piso.vagas.removerVeiculosEletricos(quantidade);
-                piso.MostrarVagas();
-                removerVagas();
-                break;
-            case 4:
-                piso.vagas.removerMotocicleta(quantidade);
-                piso.MostrarVagas();
-                removerVagas();
-                break;
-            case 5:
-                break;
-            default:
-                System.out.println("Opção escolhina não é válida");
+
+            switch (opcao) {
+                case 1:
+                    piso.vagas.removerVeiculosPequenos(quantidade);
+                    piso.MostrarVagas();
+                    removerVagas();
+                    break;
+                case 2:
+                    piso.vagas.removerVeiculosGrandes(quantidade);
+                    piso.MostrarVagas();
+                    removerVagas();
+                    break;
+                case 3:
+                    piso.vagas.removerVeiculosEletricos(quantidade);
+                    piso.MostrarVagas();
+                    removerVagas();
+                    break;
+                case 4:
+                    piso.vagas.removerMotocicleta(quantidade);
+                    piso.MostrarVagas();
+                    removerVagas();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Opção escolhina não é válida");
+            }
+        }catch (Exception e){
+            System.out.println("Opcao ou quantidade informada nao foi um numero!");
+            TimerSleep.Sleep(2);
         }
     }
 
@@ -141,39 +168,44 @@ public class ModificarPiso {
         System.out.println("4 - Modificar Quantidade Motocicletas");
         System.out.println("5 - Sair");
         System.out.print("Digite sua opcao: ");
-        int opcao = Leitor.nextInt();
-        int quantidade = 0;
 
-        if (opcao != 5) {
-            System.out.print("Quantidade: ");
-            quantidade = Leitor.nextInt();
-        }
+        try{
+            int opcao = Leitor.nextInt();
+            int quantidade = 0;
 
-        switch (opcao) {
-            case 1:
-                piso.vagas.setVeiculosPequenos(quantidade);
-                piso.MostrarVagas();
-                modificarQtVagas();
-                break;
-            case 2:
-                piso.vagas.setVeiculosGrandes(quantidade);
-                piso.MostrarVagas();
-                modificarQtVagas();
-                break;
-            case 3:
-                piso.vagas.setVeiculosEletricos(quantidade);
-                piso.MostrarVagas();
-                modificarQtVagas();
-                break;
-            case 4:
-                piso.vagas.setMotocicleta(quantidade);
-                piso.MostrarVagas();
-                modificarQtVagas();
-                break;
-            case 5:
-                break;
-            default:
-                System.out.println("Opção escolhina não é válida");
+            if (opcao != 5) {
+                System.out.print("Quantidade: ");
+                quantidade = Leitor.nextInt();
+            }
+
+            switch (opcao) {
+                case 1:
+                    piso.vagas.setVeiculosPequenos(quantidade);
+                    piso.MostrarVagas();
+                    modificarQtVagas();
+                    break;
+                case 2:
+                    piso.vagas.setVeiculosGrandes(quantidade);
+                    piso.MostrarVagas();
+                    modificarQtVagas();
+                    break;
+                case 3:
+                    piso.vagas.setVeiculosEletricos(quantidade);
+                    piso.MostrarVagas();
+                    modificarQtVagas();
+                    break;
+                case 4:
+                    piso.vagas.setMotocicleta(quantidade);
+                    piso.MostrarVagas();
+                    modificarQtVagas();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Opção escolhina não é válida");
+            }
+        }catch (Exception e){
+            System.out.println("Opcao ou quantidade informada nao foi um numero!");
         }
     }
 
@@ -188,6 +220,7 @@ public class ModificarPiso {
                 condition = false;
             } else {
                 System.out.println("Quantidade Invalida, tente novamente!");
+                TimerSleep.Sleep(2);
             }
 
         }
@@ -205,6 +238,7 @@ public class ModificarPiso {
                 condition = false;
             } else {
                 System.out.println("Quantidade Invalida, tente novamente!");
+                TimerSleep.Sleep(2);
             }
 
         }

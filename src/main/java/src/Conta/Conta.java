@@ -1,7 +1,9 @@
 package src.Conta;
 
+import java.util.ArrayList;
+
 public class Conta {
-   protected String usuario;
+   public String usuario;
    protected String senha;
 
    public String getUser(){
@@ -23,4 +25,8 @@ public class Conta {
    public boolean equals(Conta adm){
       return this.getUser().equals(adm.getUser()) && this.getPass().equals(adm.getPass());
   }
+
+   public boolean equalsUser(Conta adm){
+      return this.getUser().equals(adm.getUser());
+   }
 }

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import src.Conta.Administrador;
 import src.Conta.Atendente;
+import src.Conta.Conta;
 import src.Pagamento.Pagamento;
 import src.Pagamento.Ticket;
 import src.Piso.Piso;
@@ -66,6 +68,16 @@ public class ClientActions {
 
         Veiculo veiculo = criarVeiculo();
 
+        if(veiculo.getPlaca().length() > 8){
+            System.out.println("\nA placa informada e invalida!");
+            return;
+        }
+
+        if(this.verifyVeiclesExist(this.Clientes,veiculo) ){
+            System.out.println("\nVeiculo ja esta estacionado!");
+            return;
+        }
+
         System.out.println("\n\nEm qual piso deseja estacionar?");
 
         for (int i = 0; i < Pisos.size(); i++) {
@@ -84,6 +96,15 @@ public class ClientActions {
         if (quantidadeAtual < this.Clientes.size())
             System.out.println("\n\n Veiculo " + cliente.ticket.getVeiculo().getPlaca() + " adicionado a vaga no piso "
                     + andar + "");
+    }
+
+    private boolean verifyVeiclesExist(ArrayList<Cliente> clientes, Veiculo novoVeiculo){
+        for(int i=0;i<clientes.size();i++){
+            if(clientes.get(i).ticket.getVeiculo().equals(novoVeiculo)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private Veiculo criarVeiculo() {

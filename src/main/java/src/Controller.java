@@ -7,6 +7,8 @@ import src.Atores.ClientActions;
 import src.Atores.Cliente;
 import src.Conta.Administrador;
 import src.Conta.Atendente;
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
 import src.Piso.Piso;
 
 public class Controller {
@@ -28,8 +30,7 @@ public class Controller {
     }
 
     public void init() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        CleanCLI.clear();
 
         System.out.println("================= MENU =================");
         System.out.println("Como deseja entrar?");
@@ -52,8 +53,8 @@ public class Controller {
                 System.out.println("Fechando Programa...");
                 break;
             default:
-                System.out.println("\n\nOpção escolhina não é válida");
-                try { Thread.sleep (5000); } catch (InterruptedException ex) {}
+                System.out.println("\nOpcao escolhina nao e valida");
+                TimerSleep.Sleep(2);
                 init();
         }
     }
@@ -81,7 +82,7 @@ public class Controller {
         if(userId != -1)
             Administradores.get(userId).AdministradorAction();
         else
-            System.out.println("Usuario não Encontrado");
+            System.out.println("Usuario nao Encontrado");
     }
 
     private void ChamarCliente(){

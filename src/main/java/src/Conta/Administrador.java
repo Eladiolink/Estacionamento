@@ -6,6 +6,8 @@ import java.util.Scanner;
 import src.Conta.Gerenciamento.Administradores;
 import src.Conta.Gerenciamento.Atendentes;
 import src.Conta.Gerenciamento.Pisos;
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
 import src.Piso.Piso;
 
 public class Administrador extends Conta {
@@ -37,9 +39,7 @@ public class Administrador extends Conta {
     }
 
     public void AdministradorAction() {
-       
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        CleanCLI.clear();
 
         System.out.println("\n================= ADMINISTRADOR =================");
         System.out.println("1 - Opcoes de Piso");
@@ -66,7 +66,8 @@ public class Administrador extends Conta {
                 System.out.println("Encerrando sessão...");
                 break;
             default:
-                System.out.println("Opção escolhina não é válida");
+                System.out.println("Opcao escolhina nao e valida");
+                TimerSleep.Sleep(3);
                 AdministradorAction();
         }       
     }

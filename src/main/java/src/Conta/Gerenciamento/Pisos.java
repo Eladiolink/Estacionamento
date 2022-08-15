@@ -1,8 +1,11 @@
 package src.Conta.Gerenciamento;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
 import src.Piso.ModificarPiso;
 import src.Piso.Piso;
 
@@ -15,6 +18,8 @@ public class Pisos implements InterfaceGerenciamento {
     }
 
     public void Piso(){
+        CleanCLI.clear();
+
         System.out.println("\n================= PISO =================");
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Adicionar piso");
@@ -41,7 +46,8 @@ public class Pisos implements InterfaceGerenciamento {
             case "4":
                 break;
             default:
-                System.out.println("Opção escolhina não é válida");
+                System.out.println("Opcao escolhina nao e valida");
+                TimerSleep.Sleep(1);
                 Piso();
         }
     }
@@ -76,6 +82,7 @@ public class Pisos implements InterfaceGerenciamento {
             }
         }catch (Exception e){
             System.out.println("Opcao passada nao e um numero");
+            TimerSleep.Sleep(1);
         }
     }
     
@@ -95,12 +102,13 @@ public class Pisos implements InterfaceGerenciamento {
             int opcao = Leitor.nextInt();
 
             if (opcao >= Pisos.size()) {
-                System.out.println("Piso Inválido!");
+                System.out.println("Piso Invalido!");
             } else {
                 Pisos.remove(opcao);
             }
         }catch (Exception e){
             System.out.println("Opcao passada nao e um numero");
+            TimerSleep.Sleep(1);
         }
     }
 

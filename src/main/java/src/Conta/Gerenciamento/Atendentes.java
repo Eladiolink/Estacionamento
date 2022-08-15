@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.Conta.Atendente;
+import src.Conta.Conta;
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
 
 public class Atendentes implements InterfaceGerenciamento{
     private Scanner Leitor = new Scanner(System.in);
@@ -14,6 +17,8 @@ public class Atendentes implements InterfaceGerenciamento{
     }
 
     public void Atendente(){
+        CleanCLI.clear();
+
         System.out.println("\n================= ATENDENTE =================");
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Adicionar atendente");
@@ -38,7 +43,7 @@ public class Atendentes implements InterfaceGerenciamento{
                 break;
             default:
                 System.out.println("Opção escolhina não é válida");
-               
+                TimerSleep.Sleep(1);
         }
     }
 
@@ -51,13 +56,28 @@ public class Atendentes implements InterfaceGerenciamento{
         String Pass = Leitor.next();
         
         Atendente novoAtendente = new Atendente(User, Pass);
+
+        if(this.verifyAccountExist(this.Atendentes,novoAtendente) ){
+            System.out.println("\nUsuario ja existe!");
+            return;
+        }
+
         Atendentes.add(novoAtendente);
 
         if(Atendentes.size() > quantidadeAtual){
             System.out.println("\nAtendente "+User+" adicionado com sucesso!");
         }
     }
-    
+
+    private boolean verifyAccountExist(ArrayList<Atendente> contas, Conta novaConta){
+        for(int i=0;i<contas.size();i++){
+            if(contas.get(i).equalsUser(novaConta)){
+                return true;
+            }
+        }
+
+        return false;
+    }
     public void Modificar(){
         if (Atendentes.size() == 0) {
             System.out.println("\n\n Nao tem Atendentes para modificar");

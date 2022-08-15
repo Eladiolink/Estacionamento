@@ -1,11 +1,13 @@
 package src.Conta.Gerenciamento;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.Conta.Administrador;
 import src.Conta.Atendente;
+import src.Conta.Conta;
+import src.Helper.CleanCLI;
+import src.Helper.TimerSleep;
 import src.Piso.Piso;
 
 public class Administradores implements InterfaceGerenciamento {
@@ -24,6 +26,8 @@ public class Administradores implements InterfaceGerenciamento {
     }
 
     public void Admnistrador() {
+        CleanCLI.clear();
+
         System.out.println("\n================= ADMNISTRADOR =================");
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Adicionar administrador");
@@ -50,7 +54,8 @@ public class Administradores implements InterfaceGerenciamento {
             case "4":
                 break;
             default:
-                System.out.println("Opção escolhina não é válida");
+                System.out.println("Opcao escolhina nao e valida");
+                TimerSleep.Sleep(2);
                 Admnistrador();
         }
     }
@@ -64,11 +69,26 @@ public class Administradores implements InterfaceGerenciamento {
         String Pass = Leitor.next();
 
         Administrador novoAdministrador = new Administrador(Pisos, Admnistradores, Atendentes, User, Pass);
+
+        if(this.verifyAccountExist(this.Admnistradores,novoAdministrador) ){
+            System.out.println("\nUsuario ja existe!");
+            return;
+        }
+
         Admnistradores.add(novoAdministrador);
 
         if (Admnistradores.size() > quantidadeAtual) {
             System.out.println("\nAtendente " + User + " adicionado com sucesso!");
         }
+    }
+
+    private boolean verifyAccountExist(ArrayList<Administrador> contas, Conta novaConta){
+        for(int i=0;i<contas.size();i++){
+            if(contas.get(i).equalsUser(novaConta)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void Modificar() {
@@ -82,7 +102,8 @@ public class Administradores implements InterfaceGerenciamento {
             int opcao = Leitor.nextInt();
 
             if (opcao >= Admnistradores.size()) {
-                System.out.println("Usuario Inválido!");
+                System.out.println("Usuario Invalido!");
+                TimerSleep.Sleep(2);
             } else {
                 Administrador adm = Admnistradores.get(opcao);
 
@@ -103,6 +124,7 @@ public class Administradores implements InterfaceGerenciamento {
             }
         } catch (Exception e){
             System.out.println("Valor passado nao e um inteiro");
+            TimerSleep.Sleep(2);
         }
 
     }
@@ -129,6 +151,7 @@ public class Administradores implements InterfaceGerenciamento {
             }
         }catch (Exception e) {
             System.out.println("Opcao passada nao e um numero!");
+            TimerSleep.Sleep(2);
         }
     }
 }
