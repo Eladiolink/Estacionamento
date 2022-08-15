@@ -83,28 +83,31 @@ public class ModificarPiso {
                 case 1:
                     piso.vagas.adicionarVeiculosPequenos(quantidade);
                     piso.MostrarVagas();
+                    TimerSleep.Sleep(1);
                     adicionarVagas();
                     break;
                 case 2:
                     piso.vagas.adicionarVeiculosGrandes(quantidade);
                     piso.MostrarVagas();
+                    TimerSleep.Sleep(1);
                     adicionarVagas();
                     break;
                 case 3:
                     piso.vagas.adicionarVeiculosEletricos(quantidade);
                     piso.MostrarVagas();
+                    TimerSleep.Sleep(1);
                     adicionarVagas();
                     break;
                 case 4:
                     piso.vagas.adicionarMotocicleta(quantidade);
                     piso.MostrarVagas();
+                    TimerSleep.Sleep(1);
                     adicionarVagas();
                     break;
                 case 5:
                     break;
                 default:
                     System.out.println("Opcao escolhida nao e valida");
-                    TimerSleep.Sleep(2);
             }
         }catch (Exception e){
             System.out.println("Quantidade informada nao e um numero");
@@ -124,8 +127,11 @@ public class ModificarPiso {
         try{
             int opcao = Leitor.nextInt();
             int quantidade = 0;
-            System.out.print("Quantidade deseja remover: ");
-            quantidade = Leitor.nextInt();
+            if(opcao != 5){
+                System.out.print("Quantidade deseja remover: ");
+                quantidade = Leitor.nextInt();
+            }
+
 
 
             switch (opcao) {
@@ -203,9 +209,11 @@ public class ModificarPiso {
                     break;
                 default:
                     System.out.println("Opção escolhina não é válida");
+                    TimerSleep.Sleep(1);
             }
         }catch (Exception e){
             System.out.println("Opcao ou quantidade informada nao foi um numero!");
+            TimerSleep.Sleep(1);
         }
     }
 

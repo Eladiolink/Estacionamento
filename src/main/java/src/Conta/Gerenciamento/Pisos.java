@@ -57,15 +57,17 @@ public class Pisos implements InterfaceGerenciamento {
         int qtEntrada = Leitor.nextInt();
         System.out.print("Quantidade de Saidas: ");
         int qtSaida = Leitor.nextInt();
-        Piso piso = new Piso(Piso.qtPisos++,qtEntrada,qtSaida);
+        Piso piso = new Piso(Piso.qtPisos,qtEntrada,qtSaida);
         this.Pisos.add(piso);
         
         piso.MostrarVagas();
+        TimerSleep.Sleep(1);
     }
 
     public void Modificar() {
         if(Pisos.size() == 0){
             System.out.println("\n\nNAO HA NENHUM PISO PARA ALTERAR!!");
+            TimerSleep.Sleep(1);
             return;
         }
 
@@ -89,13 +91,13 @@ public class Pisos implements InterfaceGerenciamento {
     public void Remover(){
         if (Pisos.size() == 0) {
             System.out.println("\n\n Nao ha nenhum piso a remover");
+            TimerSleep.Sleep(1);
             return;
         }
 
+        MostrarPisos();
+
         System.out.println("\n\nQual deseja Remover?");
-        for (int i = 0; i < Pisos.size(); i++) {
-            System.out.println(i + " - Piso");
-        }
 
         try{
             System.out.print("Opcao: ");
@@ -115,13 +117,15 @@ public class Pisos implements InterfaceGerenciamento {
     public void MostrarPisos(){
         if(Pisos.size() == 0){
             System.out.println("\n\nNAO HA NENHUM PISO PARA ALTERAR!!");
+            TimerSleep.Sleep(1);
             return;
         }
         
         System.out.println("\n\n================= PISOS =================");
         for(int i=0;i<Pisos.size();i++){
-            System.out.println("Piso "+i);
+            System.out.println(i+" - Piso Andar:"+ Pisos.get(i).getAndar());
         }
+        TimerSleep.Sleep(1);
     }
     
 }

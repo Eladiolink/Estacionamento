@@ -59,6 +59,7 @@ public class Atendentes implements InterfaceGerenciamento{
 
         if(this.verifyAccountExist(this.Atendentes,novoAtendente) ){
             System.out.println("\nUsuario ja existe!");
+            TimerSleep.Sleep(1);
             return;
         }
 
@@ -66,6 +67,7 @@ public class Atendentes implements InterfaceGerenciamento{
 
         if(Atendentes.size() > quantidadeAtual){
             System.out.println("\nAtendente "+User+" adicionado com sucesso!");
+            TimerSleep.Sleep(1);
         }
     }
 
@@ -81,6 +83,7 @@ public class Atendentes implements InterfaceGerenciamento{
     public void Modificar(){
         if (Atendentes.size() == 0) {
             System.out.println("\n\n Nao tem Atendentes para modificar");
+            TimerSleep.Sleep(1);
             return;
         }
 
@@ -95,6 +98,7 @@ public class Atendentes implements InterfaceGerenciamento{
 
             if (opcao >= Atendentes.size()) {
                 System.out.println("Usuario Inválido!");
+                TimerSleep.Sleep(1);
             } else {
                 Atendente adm = Atendentes.get(opcao);
 
@@ -115,12 +119,14 @@ public class Atendentes implements InterfaceGerenciamento{
             }
         }catch (Exception e){
             System.out.println("Opcao passada nao e um numero");
+            TimerSleep.Sleep(1);
         }
     }
 
     public void Remover() {
         if (Atendentes.size() == 0) {
             System.out.println("\n\n Nao tem Atendentes para remover");
+            TimerSleep.Sleep(1);
             return;
         }
         
@@ -152,6 +158,8 @@ public class Atendentes implements InterfaceGerenciamento{
         if(remocao)
             System.out.println("Atendente removido!");
         else
-            System.out.println("Atendente não removido, ou não encontrado!");
+            System.out.println("Atendente nao removido, ou nao encontrado!");
+
+        TimerSleep.Sleep(2);
     }
 }

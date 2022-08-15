@@ -72,6 +72,7 @@ public class Administradores implements InterfaceGerenciamento {
 
         if(this.verifyAccountExist(this.Admnistradores,novoAdministrador) ){
             System.out.println("\nUsuario ja existe!");
+            TimerSleep.Sleep(1);
             return;
         }
 
@@ -79,6 +80,7 @@ public class Administradores implements InterfaceGerenciamento {
 
         if (Admnistradores.size() > quantidadeAtual) {
             System.out.println("\nAtendente " + User + " adicionado com sucesso!");
+            TimerSleep.Sleep(1);
         }
     }
 
@@ -132,6 +134,7 @@ public class Administradores implements InterfaceGerenciamento {
     public void Remover() {
         if (Admnistradores.size() == 1) {
             System.out.println("\n\n Nao pode remover o unico usuario administrador do sistema!");
+            TimerSleep.Sleep(2);
             return;
         }
 
@@ -146,6 +149,7 @@ public class Administradores implements InterfaceGerenciamento {
 
             if (opcao >= Admnistradores.size()) {
                 System.out.println("Usuario Invalido!");
+                TimerSleep.Sleep(1);
             } else {
                 Admnistradores.remove(opcao);
             }

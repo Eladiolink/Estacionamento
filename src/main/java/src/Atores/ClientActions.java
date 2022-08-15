@@ -1,5 +1,6 @@
 package src.Atores;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 import src.Conta.Administrador;
 import src.Conta.Atendente;
 import src.Conta.Conta;
+import src.Helper.TimerSleep;
 import src.Pagamento.Pagamento;
 import src.Pagamento.Ticket;
 import src.Piso.Piso;
@@ -55,7 +57,7 @@ public class ClientActions {
                 try { Thread.sleep (5000); } catch (InterruptedException ex) {}
                 break;
             default:
-                System.out.println("Opção escolhina não é válida");
+                System.out.println("Opcao escolhina nao e valida");
                 clientInit();
         }
     }
@@ -70,11 +72,13 @@ public class ClientActions {
 
         if(veiculo.getPlaca().length() > 8){
             System.out.println("\nA placa informada e invalida!");
+            TimerSleep.Sleep(2);
             return;
         }
 
         if(this.verifyVeiclesExist(this.Clientes,veiculo) ){
             System.out.println("\nVeiculo ja esta estacionado!");
+            TimerSleep.Sleep(2);
             return;
         }
 
@@ -96,6 +100,7 @@ public class ClientActions {
         if (quantidadeAtual < this.Clientes.size())
             System.out.println("\n\n Veiculo " + cliente.ticket.getVeiculo().getPlaca() + " adicionado a vaga no piso "
                     + andar + "");
+        TimerSleep.Sleep(2);
     }
 
     private boolean verifyVeiclesExist(ArrayList<Cliente> clientes, Veiculo novoVeiculo){
@@ -148,6 +153,7 @@ public class ClientActions {
                     break;
                 default:
                     System.out.println("Opcao escolhina nao e valida, Tente Novamente!");
+                    TimerSleep.Sleep(2);
             }
         }
 
@@ -157,6 +163,7 @@ public class ClientActions {
     private void sair() {
         if (this.Atendentes.size() == 0) {
             System.out.println("\nAgarde um momento, sem atendentes disponiveis!");
+            TimerSleep.Sleep(2);
             return;
         }
 
@@ -164,6 +171,7 @@ public class ClientActions {
 
         if (cliente == null) {
             System.out.println("Nada encontrado!!");
+            TimerSleep.Sleep(2);
             return;
         }
 
@@ -206,9 +214,16 @@ public class ClientActions {
     }
 
     private void MostrarVagasLivres() {
+
+        if(Pisos.size() == 0){
+            System.out.println("\n\nNAO HA NENHUM PISO!!");
+            TimerSleep.Sleep(1);
+            return;
+        }
+
         System.out.println("================= PISOS =================");
         for (int i = 0; i < this.Pisos.size(); i++) {
-            System.out.println(i + " Piso");
+            System.out.println(i+" - Piso Andar:"+ Pisos.get(i).getAndar());
         }
 
         try { 
@@ -216,6 +231,7 @@ public class ClientActions {
             int opcao = Leitor.nextInt(); 
             if (opcao >= this.Pisos.size()) {
                 System.out.println("Piso inválido!");
+                TimerSleep.Sleep(2);
                 return;
             }
     
@@ -223,6 +239,7 @@ public class ClientActions {
             piso.MostrarVagas();
         } catch (Exception e) { 
             System.out.println("\nValor informado nao e um numero!");
+            TimerSleep.Sleep(2);
         }
        
     }

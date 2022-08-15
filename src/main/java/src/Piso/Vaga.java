@@ -1,5 +1,7 @@
 package src.Piso;
 
+import src.Helper.TimerSleep;
+
 public class Vaga {
     private int veiculosPequenos;
     private int veiculosGrandes;
@@ -92,6 +94,7 @@ public class Vaga {
         int totalNovo = this.getVeiculosGrandes() - quantidade;
         if (totalNovo < 0) {
             System.out.println("Quantidade não é valida");
+            TimerSleep.Sleep(1);
             return;
         }
         this.setVeiculosGrandes(totalNovo);
@@ -101,6 +104,7 @@ public class Vaga {
         int totalNovo = this.getVeiculosEletricos() - quantidade;
         if (totalNovo < 0) {
             System.out.println("Quantidade não é valida");
+            TimerSleep.Sleep(1);
             return;
         }
         this.setVeiculosEletricos(totalNovo);
@@ -110,6 +114,7 @@ public class Vaga {
         int totalNovo = this.getMotocicleta() - quantidade;
         if (totalNovo < 0) {
             System.out.println("Quantidade não é valida");
+            TimerSleep.Sleep(1);
             return;
         }
         this.setMotocicleta(totalNovo);
@@ -170,6 +175,7 @@ public class Vaga {
     private boolean verifyCountVeicle(int veiculo) {
         if (veiculo == 0) {
             System.out.println("Nao ha vagas!");
+            TimerSleep.Sleep(1);
             return true;
         }
 

@@ -1,5 +1,6 @@
 package src;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,8 +64,11 @@ public class Controller {
         System.out.println("Admnistrador");
         System.out.print("Usuario: ");
         String user = Leitor.next();
-        System.out.print("Senha: ");
-        String pass = Leitor.next();
+//        System.out.print("Senha: ");
+//        String pass = Leitor.next();
+        Console console = System.console();
+
+        String pass= new String(console.readPassword("Senha: "));
         Administrador User = new Administrador(Pisos, Administradores, Atendentes, user, pass);
         int userId = -1;
         Administrador adm;
@@ -81,9 +85,11 @@ public class Controller {
 
         if(userId != -1)
             Administradores.get(userId).AdministradorAction();
-        else
+        else {
             System.out.println("Usuario nao Encontrado");
-    }
+            TimerSleep.Sleep(1);
+        }
+   }
 
     private void ChamarCliente(){
         ClienteActions.clientInit();

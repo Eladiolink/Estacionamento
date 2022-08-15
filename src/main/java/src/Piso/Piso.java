@@ -1,6 +1,8 @@
 package src.Piso;
 
 import java.util.Scanner;
+
+import src.Helper.TimerSleep;
 import src.PortalExibicao;
 import src.Veiculo.Caminhao;
 import src.Veiculo.Carro;
@@ -19,6 +21,7 @@ public class Piso {
     private  PortalExibicao portalExibicao;
 
     public Piso(int andar, int qtEntrada, int qtSaida){
+
         this.andar = andar;
         this.qtEntrada = qtEntrada;
         this.qtSaida = qtSaida;
@@ -92,14 +95,19 @@ public class Piso {
     }
 
     private void vagas(){
-        System.out.print("Quantidade de Veiculos Pequenos: ");
-        int veiculosPequenos = Leitor.nextInt();
-        System.out.print("Quantidade de Veiculos Grandes: ");
-        int veiculosGrandes = Leitor.nextInt();
-        System.out.print("Quantidade de Veiculos Eletricos: ");
-        int veiculosEletricos = Leitor.nextInt();
-        System.out.print("Quantidade de Motocicletas: ");
-        int motocicleta = Leitor.nextInt();
-        this.vagas = new Vaga(veiculosPequenos, veiculosGrandes, veiculosEletricos, motocicleta);
-    }
+        try{
+            System.out.print("Quantidade de Veiculos Pequenos: ");
+            int veiculosPequenos = Leitor.nextInt();
+            System.out.print("Quantidade de Veiculos Grandes: ");
+            int veiculosGrandes = Leitor.nextInt();
+            System.out.print("Quantidade de Veiculos Eletricos: ");
+            int veiculosEletricos = Leitor.nextInt();
+            System.out.print("Quantidade de Motocicletas: ");
+            int motocicleta = Leitor.nextInt();
+            this.vagas = new Vaga(veiculosPequenos, veiculosGrandes, veiculosEletricos, motocicleta);
+        }catch (Exception e){
+            System.out.println("Valor passado nao e um numero!");
+            TimerSleep.Sleep(1);
+        }
+      }
 }
